@@ -1,4 +1,7 @@
 #+title: Dev
+* Reference
+- [[https://mjml.io/try-it-live/MEK6V4VkAt][mjml live editor]]
+- [[https://github.com/mjmlio/mjml][mjml official JavaScript SDK]]
 
 * INPROGRESS Bootstrap
 ** Idea A
