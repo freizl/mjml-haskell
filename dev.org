@@ -1,0 +1,47 @@
+#+title: Dev
+
+* INPROGRESS Bootstrap
+** Idea A
+#+begin_src haskell
+data MjmlButton
+data MjmlLabel
+data MjmlBody
+
+class ToBlazeHtml a where
+  render :: a -> BlazeHtml
+
+-- | Render full html by inject
+-- mjml custom header, style etc
+renderFinalHtml :: MjmlBody -> BlazeHtml
+#+end_src
+** Idea B
+- Is it possible to just create custom component using BlazeHtml, then render it?
+  #+begin_src haskell
+mjBody :: Html -> Html
+mjBody = ( body ! style "word-spacing:normal;" ) . div
+
+renderMjml :: Html -> Html
+renderMjml mjbody = html mjbody
+
+myEmail = renderMjml $ mjBody $ span "test"
+  #+end_src
+- The problem with approach is not quite type safe
+  - ~renderMjml~ is meant to add mjml custom html header etc and wrap body
+  - but its type doesn't force it.
+
+** Summary
+* TODO Mjml parser
+- Parses mjml template and render into html
+  #+begin_src html
+<mjml>
+  <mj-body background-color="#d6dde5">
+    <mj-section background-color="#ffffff">
+      <mj-column width="50%">
+        <mj-image href="https://mjml.io" src="http://191n.mj.am/img/191n/3s/x4u.png" alt="Racoon logo" align="center" padding="10px"></mj-image>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+  #+end_src
+
+* TODO Serialize to JSON
